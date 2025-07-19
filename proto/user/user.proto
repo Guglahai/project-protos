@@ -1,11 +1,16 @@
 syntax = "proto3";
 package user;
 option go_package = "github.com/Guglahai/project-protos/proto/user";
+import "google/protobuf/timestamp.proto";
 
 // Сущность пользователь (минимум полей)
 message User {
   uint32 id    = 1;
   string email = 2;
+  string password = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  google.protobuf.Timestamp deleted_at = 6;
 }
 
 // Запрос на создание
