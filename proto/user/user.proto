@@ -19,7 +19,7 @@ message CreateUserRequest {
   string password = 2;
 }
 message CreateUserResponse {
-  string id = 1;
+  uint32 id = 1;
 }
 
 message GetUserRequest {
