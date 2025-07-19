@@ -11,9 +11,10 @@ message User {
 // Запрос на создание
 message CreateUserRequest {
   string email = 1;
+  string password = 2;
 }
 message CreateUserResponse {
-  User user = 1;
+  string id = 1;
 }
 
 message GetUserRequest {

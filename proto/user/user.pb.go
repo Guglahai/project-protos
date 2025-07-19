@@ -78,6 +78,7 @@ func (x *User) GetEmail() string {
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -119,9 +120,16 @@ func (x *CreateUserRequest) GetEmail() string {
 	return ""
 }
 
+func (x *CreateUserRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
 type CreateUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -156,11 +164,11 @@ func (*CreateUserResponse) Descriptor() ([]byte, []int) {
 	return file_proto_user_user_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateUserResponse) GetUser() *User {
+func (x *CreateUserResponse) GetId() string {
 	if x != nil {
-		return x.User
+		return x.Id
 	}
-	return nil
+	return ""
 }
 
 type GetUserRequest struct {
@@ -514,12 +522,12 @@ const file_proto_user_user_proto_rawDesc = "" +
 	"\x15proto/user/user.proto\x12\x04user\",\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\")\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\"E\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\"4\n" +
-	"\x12CreateUserResponse\x12\x1e\n" +
-	"\x04user\x18\x01 \x01(\v2\n" +
-	".user.UserR\x04user\" \n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"$\n" +
+	"\x12CreateUserResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\"1\n" +
 	"\x0fGetUserResponse\x12\x1e\n" +
@@ -547,7 +555,7 @@ const file_proto_user_user_proto_rawDesc = "" +
 	"\n" +
 	"UpdateUser\x12\x17.user.UpdateUserRequest\x1a\x18.user.UpdateUserResponse\x12?\n" +
 	"\n" +
-	"DeleteUser\x12\x17.user.DeleteUserRequest\x1a\x18.user.DeleteUserResponseB/Z-github.com/your-org/project-protos/proto/userb\x06proto3"
+	"DeleteUser\x12\x17.user.DeleteUserRequest\x1a\x18.user.DeleteUserResponseB/Z-github.com/Guglahai/project-protos/proto/userb\x06proto3"
 
 var (
 	file_proto_user_user_proto_rawDescOnce sync.Once
@@ -576,26 +584,25 @@ var file_proto_user_user_proto_goTypes = []any{
 	(*DeleteUserResponse)(nil), // 10: user.DeleteUserResponse
 }
 var file_proto_user_user_proto_depIdxs = []int32{
-	0,  // 0: user.CreateUserResponse.user:type_name -> user.User
-	0,  // 1: user.GetUserResponse.user:type_name -> user.User
-	0,  // 2: user.ListUserResponse.user:type_name -> user.User
-	0,  // 3: user.UpdateUserRequest.user:type_name -> user.User
-	0,  // 4: user.UpdateUserResponse.user:type_name -> user.User
-	1,  // 5: user.UserService.CreateUser:input_type -> user.CreateUserRequest
-	3,  // 6: user.UserService.GetUser:input_type -> user.GetUserRequest
-	5,  // 7: user.UserService.ListUsers:input_type -> user.ListUserRequest
-	7,  // 8: user.UserService.UpdateUser:input_type -> user.UpdateUserRequest
-	9,  // 9: user.UserService.DeleteUser:input_type -> user.DeleteUserRequest
-	2,  // 10: user.UserService.CreateUser:output_type -> user.CreateUserResponse
-	4,  // 11: user.UserService.GetUser:output_type -> user.GetUserResponse
-	6,  // 12: user.UserService.ListUsers:output_type -> user.ListUserResponse
-	8,  // 13: user.UserService.UpdateUser:output_type -> user.UpdateUserResponse
-	10, // 14: user.UserService.DeleteUser:output_type -> user.DeleteUserResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	0,  // 0: user.GetUserResponse.user:type_name -> user.User
+	0,  // 1: user.ListUserResponse.user:type_name -> user.User
+	0,  // 2: user.UpdateUserRequest.user:type_name -> user.User
+	0,  // 3: user.UpdateUserResponse.user:type_name -> user.User
+	1,  // 4: user.UserService.CreateUser:input_type -> user.CreateUserRequest
+	3,  // 5: user.UserService.GetUser:input_type -> user.GetUserRequest
+	5,  // 6: user.UserService.ListUsers:input_type -> user.ListUserRequest
+	7,  // 7: user.UserService.UpdateUser:input_type -> user.UpdateUserRequest
+	9,  // 8: user.UserService.DeleteUser:input_type -> user.DeleteUserRequest
+	2,  // 9: user.UserService.CreateUser:output_type -> user.CreateUserResponse
+	4,  // 10: user.UserService.GetUser:output_type -> user.GetUserResponse
+	6,  // 11: user.UserService.ListUsers:output_type -> user.ListUserResponse
+	8,  // 12: user.UserService.UpdateUser:output_type -> user.UpdateUserResponse
+	10, // 13: user.UserService.DeleteUser:output_type -> user.DeleteUserResponse
+	9,  // [9:14] is the sub-list for method output_type
+	4,  // [4:9] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_user_proto_init() }
