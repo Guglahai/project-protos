@@ -5,11 +5,14 @@ option go_package = "github.com/Guglahai/project-protos/proto/task";
 // Сущность задача
 message Task {
   uint32 id      = 1;
-  string title   = 2;
+  uint32 userId  = 2;
+  string title   = 3;
+  bool isDone    = 4;
 }
 
 message CreateTaskRequest {
   string title = 1;
+  uint32 userId = 2;
 }
 message CreateTaskResponse {
   Task task = 1;
@@ -22,9 +25,16 @@ message GetTaskResponse {
   Task task = 1;
 }
 
-message ListTaskRequest {
+message ListTasksRequest {
 }
-message ListTaskResponse {
+message ListTasksResponse {
+  repeated Task task = 1;
+}
+
+message ListTasksByUserRequest {
+  uint32 userId = 1;
+}
+message ListTasksByUserResponse {
   repeated Task task = 1;
 }
 
@@ -45,7 +55,8 @@ message DeleteTaskResponse {
 service TaskService {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
   rpc GetTask    (GetTaskRequest)    returns (GetTaskResponse);
-  rpc ListTasks  (ListTaskRequest)   returns (ListTaskResponse);
+  rpc ListTasks  (ListTasksRequest)   returns (ListTasksResponse);
+  rpc ListTasksByUser  (ListTasksByUserRequest)   returns (ListTasksByUserResponse);
   rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
 }
